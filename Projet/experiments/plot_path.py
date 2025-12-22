@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 
 def plot_path(venues, edges, title="Optimal Venue Path"):
     """
-    Visualiser les venues et le chemin optimal
-    venues : dict avec x,y
-    edges : liste de tuples (i,j)
+    Visualize venues and the optimal path
+    venues : dictionary containing x, y coordinates
+    edges  : list of tuples (i, j)
     """
     fig, ax = plt.subplots()
     
@@ -24,3 +24,4 @@ def plot_path(venues, edges, title="Optimal Venue Path"):
     ax.set_title(title)
     plt.grid(True)
     plt.show()
+
