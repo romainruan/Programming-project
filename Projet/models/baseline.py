@@ -9,7 +9,7 @@ def baseline_solution(venues, distances=None, T=15, B=50):
     total_cost = 0
     total_satisfaction = 0
 
-    # Trier venues par satisfaction décroissante
+    # Sort venues by decreasing satisfaction
     for i, v in sorted(venues.items(), key=lambda item: item[1]['satisfaction'], reverse=True):
         if total_time + v['stay'] <= T and total_cost + v['cost'] <= B:
             selected.append(i)
@@ -18,3 +18,4 @@ def baseline_solution(venues, distances=None, T=15, B=50):
             total_satisfaction += v['satisfaction']
 
     return total_satisfaction
+
