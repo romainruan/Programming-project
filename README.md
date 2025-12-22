@@ -10,13 +10,13 @@
 Project/
 │
 ├── data/
-│ └── fixed_data.py # Fixed (non-random) venues and distances
+│ └── synthetic_data.py # Fixed venues and distances
 │
 ├── models/
 │ ├── ilp_model.py # ILP optimization model
 │ └── baseline.py # Greedy baseline heuristic
 │
 ├── experiments/
-│ ├── run_experiments.py # Main script (runs ILP, baseline, sensitivity analysis)
+│ ├── main.py # Main script (runs ILP, baseline, sensitivity analysis)
 │ └── plot_path.py # Visualization of the optimal route
 ```
