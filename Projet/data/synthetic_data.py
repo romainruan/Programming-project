@@ -1,7 +1,7 @@
 import math
 
 def generate_data():
-    # Venues fixes (coordonnées, temps, coût, satisfaction)
+    # Fixed venues (coordinates, stay duration, cost, satisfaction)
     venues = {
         0: {"x": 0, "y": 0, "stay": 1.0, "cost": 6, "satisfaction": 4.0},
         1: {"x": 2, "y": 1, "stay": 1.2, "cost": 7, "satisfaction": 4.5},
@@ -11,7 +11,7 @@ def generate_data():
         5: {"x": 9, "y": 2, "stay": 1.3, "cost": 9, "satisfaction": 5.0},
     }
 
-    # Distances euclidiennes (temps de déplacement)
+    # Euclidean distances between venues (travel time)
     distances = {}
     for i in venues:
         for j in venues:
@@ -21,3 +21,4 @@ def generate_data():
                 distances[(i, j)] = round(math.hypot(dx, dy), 2)
 
     return venues, distances
+
