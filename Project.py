@@ -1,5 +1,5 @@
 """
-BARATHON OPTIMIZATION: A Comprehensive Operations Research Approach
+BARATHON OPTIMIZATION
 ====================================================================
 Authors: Ruben Salaün, Romain Ruan, Jules Nguyen
 Institution: Uvic, Barcelona
@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 
-# Set style for publication-quality figures
 plt.style.use('default')
 plt.rcParams['figure.facecolor'] = 'white'
 plt.rcParams['axes.grid'] = True
@@ -305,7 +304,7 @@ def run_sensitivity_analysis(venues: Dict[int, Venue],
     
     results = []
     
-    print("\n📊 Running sensitivity analysis...")
+    print("\n Running sensitivity analysis...")
     print("   Testing different time limits...")
     for time_limit in np.arange(2, 8, 0.5):
         sol = solve_greedy_routing_aware(venues, distances, max_time=time_limit)
@@ -395,7 +394,7 @@ def create_visualizations(venues: Dict[int, Venue],
     
     plt.tight_layout()
     plt.savefig('barathon_route.png', dpi=300, bbox_inches='tight')
-    print("✓ Saved: barathon_route.png")
+    print("Saved: barathon_route.png")
     plt.show()
     
     # Figure 2: Sensitivity Analysis
@@ -423,7 +422,7 @@ def create_visualizations(venues: Dict[int, Venue],
     
     plt.tight_layout()
     plt.savefig('sensitivity_analysis.png', dpi=300, bbox_inches='tight')
-    print("✓ Saved: sensitivity_analysis.png")
+    print("Saved: sensitivity_analysis.png")
     plt.show()
 
 # ============================================================================
@@ -434,7 +433,7 @@ def main():
     """Main execution function."""
     
     print("\n" + "="*70)
-    print(" 🍺 BARATHON OPTIMIZATION - Operations Research Project")
+    print("BARATHON OPTIMIZATION - Operations Research Project")
     print(" Authors: Ruben Salaün, Romain Ruan, Jules Nguyen")
     print("="*70 + "\n")
     
@@ -443,12 +442,12 @@ def main():
     np.random.seed(42)
     
     # Generate data
-    print("📍 Generating Barcelona bar data...")
-    venues, distances = generate_realistic_barcelona_data(n_venues=15)  # Plus de bars
-    print(f"   ✓ Generated {len(venues)-1} bars + starting point\n")
+    print("Generating Barcelona bar data...")
+    venues, distances = generate_realistic_barcelona_data(n_venues=15)  
+    print(f"Generated {len(venues)-1} bars + starting point\n")
     
     # Display venue information
-    print("📋 Available Venues:")
+    print("Available Venues:")
     print("-"*70)
     for i, v in venues.items():
         if i != 0:
@@ -461,23 +460,23 @@ def main():
     MAX_TIME = 8.0  # hours - Plus de temps
     MAX_BUDGET = 120.0  # euros - Plus de budget
     
-    print(f"⚙️  Optimization Constraints:")
-    print(f"   • Maximum Time Available: {MAX_TIME} hours ({MAX_TIME*60:.0f} minutes)")
-    print(f"   • Maximum Budget: €{MAX_BUDGET}")
+    print(f"Optimization Constraints:")
+    print(f"   - Maximum Time Available: {MAX_TIME} hours ({MAX_TIME*60:.0f} minutes)")
+    print(f"   - Maximum Budget: €{MAX_BUDGET}")
     print()
     
     # Solve with different algorithms
     solutions = {}
     
-    print("🔄 Running optimization algorithms...\n")
+    print("Running optimization algorithms...\n")
     
-    print("1️⃣  Greedy Algorithm (Fast approximation)...")
+    print("Greedy Algorithm (Fast approximation)...")
     solutions['Greedy'] = solve_greedy_routing_aware(venues, distances, MAX_TIME, MAX_BUDGET)
-    print(f"   ✓ Found solution with satisfaction: {solutions['Greedy']['objective']:.1f}")
+    print(f"Found solution with satisfaction: {solutions['Greedy']['objective']:.1f}")
     
-    print("\n2️⃣  2-Opt Local Search (Improvement heuristic)...")
+    print("\n2-Opt Local Search (Improvement heuristic)...")
     solutions['2-Opt'] = solve_two_opt_local_search(venues, distances, MAX_TIME, MAX_BUDGET)
-    print(f"   ✓ Found solution with satisfaction: {solutions['2-Opt']['objective']:.1f}")
+    print(f"Found solution with satisfaction: {solutions['2-Opt']['objective']:.1f}")
     
     # Display all solutions
     for algo_name, sol in solutions.items():
@@ -485,7 +484,7 @@ def main():
     
     # Compare algorithms
     print(f"\n{'='*70}")
-    print("  📊 ALGORITHM COMPARISON")
+    print("ALGORITHM COMPARISON")
     print(f"{'='*70}")
     print(f"{'Algorithm':<15} {'Satisfaction':>15} {'Venues':>10} {'Time (h)':>12} {'Cost (€)':>12}")
     print("-"*70)
@@ -496,27 +495,28 @@ def main():
     
     # Sensitivity analysis
     sensitivity_df = run_sensitivity_analysis(venues, distances)
-    print("   ✓ Analysis complete\n")
+    print("Analysis complete\n")
     
     # Create visualizations
-    print("📈 Creating visualizations...")
+    print("Creating visualizations...")
     create_visualizations(venues, distances, solutions, sensitivity_df)
     
     print("\n" + "="*70)
-    print(" OPTIMIZATION COMPLETE!")
+    print("OPTIMIZATION COMPLETE!")
     print("="*70)
     print("\n Generated files:")
-    print("  • barathon_route.png - Visual map of optimal route")
-    print("  • sensitivity_analysis.png - Parameter sensitivity charts")
+    print("  - barathon_route.png - Visual map of optimal route")
+    print("  - sensitivity_analysis.png - Parameter sensitivity charts")
     print("\n Interpretation:")
     best_algo = max(solutions.keys(), key=lambda k: solutions[k]['objective'])
     best_sol = solutions[best_algo]
-    print(f"  • Best algorithm: {best_algo}")
-    print(f"  • You can visit {best_sol['n_venues']} bars")
-    print(f"  • Total satisfaction score: {best_sol['objective']:.1f}/10")
-    print(f"  • Time efficiency: {best_sol['objective']/best_sol['total_time']:.2f} satisfaction per hour")
-    print(f"  • Cost efficiency: {best_sol['objective']/best_sol['total_cost']:.2f} satisfaction per euro")
+    print(f"  - Best algorithm: {best_algo}")
+    print(f"  - You can visit {best_sol['n_venues']} bars")
+    print(f"  - Total satisfaction score: {best_sol['objective']:.1f}/10")
+    print(f"  - Time efficiency: {best_sol['objective']/best_sol['total_time']:.2f} satisfaction per hour")
+    print(f"  - Cost efficiency: {best_sol['objective']/best_sol['total_cost']:.2f} satisfaction per euro")
     print("\n")
 
 if __name__ == "__main__":
     main()
+
