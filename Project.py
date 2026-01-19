@@ -304,7 +304,7 @@ def run_sensitivity_analysis(venues: Dict[int, Venue],
     
     results = []
     
-    print("\n Running sensitivity analysis...")
+    print("\nRunning sensitivity analysis...")
     print("   Testing different time limits...")
     for time_limit in np.arange(2, 8, 0.5):
         sol = solve_greedy_routing_aware(venues, distances, max_time=time_limit)
@@ -519,4 +519,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
