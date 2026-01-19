@@ -4,5 +4,6 @@
 - pulp
 - matplotlib
 - numpy
+- pandas
 
 
